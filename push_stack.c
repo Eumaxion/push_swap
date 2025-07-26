@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   push_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 16:45:35 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/26 14:24:48 by mlima-si         ###   ########.fr       */
+/*   Created: 2025/07/26 15:45:22 by mlima-si          #+#    #+#             */
+/*   Updated: 2025/07/26 15:56:20 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	push(t_stack *dest, t_stack *source)
 {
-	if (!lst)
-		return (lst);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	
 }

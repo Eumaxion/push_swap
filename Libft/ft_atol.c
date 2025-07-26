@@ -6,11 +6,11 @@
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:40:46 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/22 16:40:47 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:17:08 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+int	ft_atol(const char *nptr)
 {
 	int		i;
 	int		negt;

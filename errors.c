@@ -1,43 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/26 15:17:22 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/26 16:30:23 by mlima-si         ###   ########.fr       */
+/*   Created: 2025/07/26 15:17:16 by mlima-si          #+#    #+#             */
+/*   Updated: 2025/07/26 15:17:17 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	error_free(t_stack	**a, char **argv, int flag_argc)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-
-	stack_a = NULL;
-	stack_b = NULL;
-	if(argc < 2 || (argc == 2 && !argv[1][0]))
+	int i;
+	if (flag_argc)
 	{
-		write(1, "Error\n", 7);
-		return(1);
-	}
-	if (argc == 2)
-		argv = ft_split(argv[1], 32);
-	build_stack(&stack_a, argv, argc == 2);
-	if (!stack_sorted(stack_a))
-	{
-		
-	}
-	free_stack(stack_a);
-	if (argc == 2)
-	{
-		int i = 0;
+		i = 0;
+		if (argv == NULL || *argv == NULL)
+			return ;
 		while (argv[i])
 			free(argv[i++]);
 		free(argv);
 	}
-	return (0);
+	if (a != NULL)
+	{
+		free_stack(*a);
+	}
+	write(1, "Error\n", 7);
+	exit(2);
+}
+
+void	free_stack(t_stack *stack)
+{
+	t_stack *tmp;
+
+	while (stack)
+	{
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
+	}
 }

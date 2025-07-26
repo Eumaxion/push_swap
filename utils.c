@@ -1,43 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/26 15:17:22 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/26 16:30:23 by mlima-si         ###   ########.fr       */
+/*   Created: 2025/07/26 16:30:41 by mlima-si          #+#    #+#             */
+/*   Updated: 2025/07/26 16:39:21 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	print_nodes(t_stack *a)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	while (a->next != NULL)
+	{
+		printf("%d\n", a->n);
+		a = a->next;
+	}
+	printf("%d\n", a->n);
+}
 
-	stack_a = NULL;
-	stack_b = NULL;
-	if(argc < 2 || (argc == 2 && !argv[1][0]))
+int	stack_sorted(t_stack *a)
+{
+	int	n;
+
+	n = a->n;
+	while (a->next)
 	{
-		write(1, "Error\n", 7);
-		return(1);
+		a = a->next;
+		if (n > a->n)
+			return (0);
+		n = a->n;
 	}
-	if (argc == 2)
-		argv = ft_split(argv[1], 32);
-	build_stack(&stack_a, argv, argc == 2);
-	if (!stack_sorted(stack_a))
+	return (1);
+}
+
+int	stack_len(t_stack *a)
+{
+	int	i;
+
+	i = 1;
+	while (a->next)
 	{
-		
+		a = a->next;
+		i++;
 	}
-	free_stack(stack_a);
-	if (argc == 2)
-	{
-		int i = 0;
-		while (argv[i])
-			free(argv[i++]);
-		free(argv);
-	}
-	return (0);
+	return (i);
 }
