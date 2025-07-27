@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:17:22 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/26 16:30:23 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/07/27 16:19:08 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,21 @@ int	main(int argc, char **argv)
 	build_stack(&stack_a, argv, argc == 2);
 	if (!stack_sorted(stack_a))
 	{
-		
+		printf("Before sorting: \n");
+		print_nodes(stack_a); //<<<<<< exclude later
+		if (stack_len(stack_a) == 2)
+			sa(&stack_a);
+		else
+		{
+			pb(&stack_a, &stack_b);
+			pb(&stack_a, &stack_b);
+			print_nodes(stack_b); //<<<<<< exclude later
+		}
+		printf("\nAfter sorting: \n");
+		print_nodes(stack_a); //<<<<<< exclude later
 	}
+	if (stack_b)
+		free_stack(stack_b);
 	free_stack(stack_a);
-	if (argc == 2)
-	{
-		int i = 0;
-		while (argv[i])
-			free(argv[i++]);
-		free(argv);
-	}
 	return (0);
 }

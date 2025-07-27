@@ -6,36 +6,45 @@
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:45:30 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/26 16:49:00 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/07/27 15:19:22 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack **a)
+static void	swap(t_stack **head)
 {
-	int	len;
+	t_stack *first;
+	t_stack *second;
 
-	len = stack_len(*a);
-	if (*a == NULL || a == NULL || len == 1)
+	if (!head || !*head || !(*head)->next)
 		return ;
-	*a = (*a)->next;
-
+	first = *head;
+	second = (*head)->next;
+	first->next = second->next;
+	first->prev = second;
+	if (second->next)
+		second->next->prev = first;
+	second->prev = NULL;
+	second->next = first;
+	*head = second;
 }
 
-
-/* static void	swap(t_stack_node **head)
+void	sa(t_stack **a)
 {
-	int	len;
+	swap(a);
+	write(1, "sa\n", 3);
+} 
 
-	len = stack_len(*head);
-	if (NULL == *head || NULL == head || 1 == len)
-		return ;
-	*head = (*head)->next;
-	(*head)->prev->prev = *head;
-	(*head)->prev->next = (*head)->next;
-	if ((*head)->next)
-		(*head)->next->prev = (*head)->prev;
-	(*head)->next = (*head)->prev;
-	(*head)->prev = NULL;
-} */
+void	sb(t_stack **b)
+{
+	swap(b);
+	write(1, "sa\n", 3);
+} 
+
+void	ss(t_stack **a, t_stack **b)
+{
+	swap(a);
+	swap(b);
+	write(1, "ss\n", 3);
+} 

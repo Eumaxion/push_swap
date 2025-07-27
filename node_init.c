@@ -6,13 +6,13 @@
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:17:18 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/26 15:38:31 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/07/27 14:16:43 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_valid(char *nbr)
+static int	is_valid(char *nbr)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int	is_valid(char *nbr)
 	return (nbr[i] == 0);
 }
 
-int check_repeated(t_stack	*a, int n)
+static int	check_repeated(t_stack	*a, int n)
 {
 	if (a == NULL)
 		return(0);
@@ -39,16 +39,7 @@ int check_repeated(t_stack	*a, int n)
 	return (0);
 }
 
-t_stack	*ft_find_last(t_stack *lst)
-{
-	if (!lst)
-		return (lst);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
-
-void	add_node(t_stack **a, int n)
+static void	add_node(t_stack **a, int n)
 {
 	t_stack *node;
 	t_stack *last_node;
@@ -72,6 +63,14 @@ void	add_node(t_stack **a, int n)
 		node->prev = last_node;
 	}
 }
+void	free_arg(char **argv)
+{
+	int i = 0;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv);
+}
+
 void	build_stack(t_stack **a, char **argv, int flag_argc)
 {
 	long	n;
@@ -92,4 +91,6 @@ void	build_stack(t_stack **a, char **argv, int flag_argc)
 		add_node(a, (int)n);
 		i++;
 	}
+	if (flag_argc)
+		free_arg(argv);
 }

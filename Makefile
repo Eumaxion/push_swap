@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRCS = push_swap.c errors.c node_init.c swap_stack.c
+SRCS = main.c errors.c node_init.c utils.c swap_stack.c rotate_stack.c rev_rotate.c push_stack.c
 
 OBJ = $(SRCS:.c=.o)
 
