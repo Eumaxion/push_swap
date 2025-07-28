@@ -29,21 +29,27 @@ int	main(int argc, char **argv)
 	build_stack(&stack_a, argv, argc == 2);
 	if (!stack_sorted(stack_a))
 	{
-		printf("Before sorting: \n");
-		print_nodes(stack_a); //<<<<<< exclude later
 		if (stack_len(stack_a) == 2)
 			sa(&stack_a);
+		else if (stack_len(stack_a) == 3)
+			fast_sort(&stack_a);
 		else
-		{
-			pb(&stack_a, &stack_b);
-			pb(&stack_a, &stack_b);
-			print_nodes(stack_b); //<<<<<< exclude later
-		}
-		printf("\nAfter sorting: \n");
-		print_nodes(stack_a); //<<<<<< exclude later
+			push_swap();
 	}
+	printf("\nAfter sorting: \n");
+	print_nodes(stack_a); //<<<<<< exclude later */
 	if (stack_b)
 		free_stack(stack_b);
 	free_stack(stack_a);
 	return (0);
 }
+
+
+/* 		printf("Before sorting: \n");
+		print_nodes(stack_a); //<<<<<< exclude later
+				else
+		{
+			pb(&stack_a, &stack_b);
+			pb(&stack_a, &stack_b);
+			print_nodes(stack_b); //<<<<<< exclude later
+		}*/

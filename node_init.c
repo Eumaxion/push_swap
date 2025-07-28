@@ -73,8 +73,8 @@ void	free_arg(char **argv)
 
 void	build_stack(t_stack **a, char **argv, int flag_argc)
 {
-	long	n;
-	int		i;
+	long int	n;
+	int			i;
 
 	i = 1;
 	if (flag_argc)

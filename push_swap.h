@@ -28,6 +28,7 @@ typedef struct	s_stack
 int			main(int argc, char **argv);
 void		build_stack(t_stack **a, char **argv, int flag_argc);
 void		free_arg(char **argv);
+void		push_swap(void);
 
 //-----------------errors-----------------
 void		error_free(t_stack	**a, char **argv, int flag_argc);
@@ -57,5 +58,8 @@ void	rr(t_stack **a, t_stack **b);
 void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
+
+void	fast_sort(t_stack **stack);
+t_stack *ft_find_biggest(t_stack *stack);
 
 #endif

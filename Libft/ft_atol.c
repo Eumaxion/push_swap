@@ -10,29 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atol(const char *nptr)
+#include<limits.h>
+
+static long int	convert(const char *nptr,int i, int sign, long int result)
 {
-	int		i;
-	int		negt;
-	long	result;
+	int	digit;
+
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		digit = nptr[i] - '0';
+		if (result > (LONG_MAX - digit) / 10)
+		{
+			if (sign == 1)
+				return (LONG_MAX);
+			else
+				return (LONG_MIN);
+		}
+		result = result * 10 + digit;
+		i++;
+	}
+	return (result * sign);
+}
+long int	ft_atol(const char *nptr)
+{
+	int			i;
+	int			sign;
+	long int	result;
 
 	i = 0;
-	negt = 1;
+	sign = 1;
 	result = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
-		{
-			negt *= -1;
-		}
+			sign *= -1;
 		i++;
 	}
-	while (nptr[i] >= 48 && nptr[i] <= 57)
-	{
-		result = result * 10 + (nptr[i] - 48);
-		i++;
-	}
-	return (result * negt);
+	result = convert(nptr, i, sign, result);
+	return (result);
 }
