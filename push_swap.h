@@ -19,7 +19,12 @@
 
 typedef struct	s_stack
 {
-	int		n;
+	int				n;
+	int				index;
+	int				above_middle;
+	int				p_cost;
+	int				cheapest;
+	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
@@ -28,7 +33,7 @@ typedef struct	s_stack
 int			main(int argc, char **argv);
 void		build_stack(t_stack **a, char **argv, int flag_argc);
 void		free_arg(char **argv);
-void		push_swap(void);
+void	push_swap(t_stack **a, t_stack **b);
 
 //-----------------errors-----------------
 void		error_free(t_stack	**a, char **argv, int flag_argc);
@@ -59,7 +64,7 @@ void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
-void	fast_sort(t_stack **stack);
+void	sort_three(t_stack **stack);
 t_stack *ft_find_biggest(t_stack *stack);
 
 #endif

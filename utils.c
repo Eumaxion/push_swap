@@ -33,15 +33,13 @@ void	print_nodes(t_stack *a)
 //---------------------^^ exclude later ^^---------------------//
 int	stack_sorted(t_stack *a)
 {
-	int	n;
-
-	n = a->n;
+	if (!a)
+		return (1);
 	while (a->next)
 	{
-		a = a->next;
-		if (n > a->n)
+		if (a->n > a->next->n)
 			return (0);
-		n = a->n;
+		a = a->next;
 	}
 	return (1);
 }
@@ -57,4 +55,19 @@ int	stack_len(t_stack *a)
 		i++;
 	}
 	return (i);
+}
+
+t_stack *ft_find_biggest(t_stack *stack)
+{
+	t_stack *biggest;
+
+	biggest = stack;
+	stack = stack->next;
+	while(stack)
+	{
+		if (biggest->n < stack->n)
+			biggest = stack;
+		stack = stack->next;
+	}
+	return(biggest);
 }

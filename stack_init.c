@@ -12,6 +12,30 @@
 
 #include "push_swap.h"
 
+void	build_stack(t_stack **a, char **argv, int flag_argc)
+{
+	long		n;
+	int			i;
+
+	i = 1;
+	if (flag_argc)
+		i--;
+	while (argv[i])
+	{
+		if (!is_valid(argv[i]))
+			error_free(a, argv, flag_argc);
+		n = ft_atol(argv[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			error_free(a, argv, flag_argc);
+		if (check_repeated(*a, (int)n))
+			error_free(a, argv, flag_argc);
+		add_node(a, (int)n);
+		i++;
+	}
+	if (flag_argc)
+		free_arg(argv);
+}
+
 static int	is_valid(char *nbr)
 {
 	int	i;
@@ -28,7 +52,7 @@ static int	is_valid(char *nbr)
 
 static int	check_repeated(t_stack	*a, int n)
 {
-	if (a == NULL)
+	if (!a)
 		return(0);
 	while (a)
 	{
@@ -69,28 +93,4 @@ void	free_arg(char **argv)
 	while (argv[i])
 		free(argv[i++]);
 	free(argv);
-}
-
-void	build_stack(t_stack **a, char **argv, int flag_argc)
-{
-	long int	n;
-	int			i;
-
-	i = 1;
-	if (flag_argc)
-		i--;
-	while (argv[i])
-	{
-		if (!is_valid(argv[i]))
-			error_free(a, argv, flag_argc);
-		n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN)
-			error_free(a, argv, flag_argc);
-		if (check_repeated(*a, (int)n))
-			error_free(a, argv, flag_argc);
-		add_node(a, (int)n);
-		i++;
-	}
-	if (flag_argc)
-		free_arg(argv);
 }

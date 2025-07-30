@@ -1,20 +1,6 @@
 #include "push_swap.h"
 
-t_stack *ft_find_biggest(t_stack *stack)
-{
-	t_stack *biggest;
-
-	biggest = stack;
-	stack = stack->next;
-	while(stack)
-	{
-		if (biggest->n < stack->n)
-			biggest = stack;
-		stack = stack->next;
-	}
-	return(biggest);
-}
-void	fast_sort(t_stack **stack)
+void	sort_three(t_stack **stack)
 {
 	t_stack *biggest;
 	biggest = ft_find_biggest(*stack);
@@ -25,9 +11,26 @@ void	fast_sort(t_stack **stack)
 	if((*stack)->n > (*stack)->next->n)
 		sa(stack);
 }
-void	push_swap(void)
+void	push_swap(t_stack **a, t_stack **b)
 {
-	write(1,"swaaaaaap\n", 11);
-}
+	int len_stack_a;
 
-//t_stack **a, t_stack **b
+	len_stack_a = stack_len(*a);
+	if (len_stack_a-- > 3 && !stack_sorted(*a))
+		pb(*a, *b, false);
+	if (len_stack_a-- > 3 && !stack_sorted(*a))
+		pb(*a, *b, false);
+	while (len_stack_a-- > 3 &&!stack_sorted(*a))
+	{
+		init_nodes_a(*a, *b);
+		a_to_b(a, b);
+	}
+	sort_three(*a);
+	while (*b)
+	{
+		nodes_b(*a, *b);
+		b_to_a(a, b);
+	}
+	while ();
+
+}

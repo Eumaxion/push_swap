@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-long int	ft_atol(const char *nptr);
+long		ft_atol(const char *nptr);
 char		**ft_split(char const *s, char c);
 int			ft_isdigit(int c);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);

@@ -12,7 +12,7 @@
 
 #include<limits.h>
 
-static long int	convert(const char *nptr,int i, int sign, long int result)
+static long	convert(const char *nptr,int i, int sign, long result)
 {
 	int	digit;
 
@@ -31,11 +31,11 @@ static long int	convert(const char *nptr,int i, int sign, long int result)
 	}
 	return (result * sign);
 }
-long int	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	int			i;
 	int			sign;
-	long int	result;
+	long		result;
 
 	i = 0;
 	sign = 1;
