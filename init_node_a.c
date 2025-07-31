@@ -14,10 +14,10 @@ void	set_index(t_stack *stack)
 	int	i;
 	int	middle;
 
-	middle = stack_len(stack) / 2;
-	i = 0;
 	if (!stack)
 		return ;
+	middle = stack_len(stack) / 2;
+	i = 0;
 	while (stack)
 	{
 		stack->index = i;

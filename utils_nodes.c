@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_nodes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 16:30:41 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/27 15:22:55 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:04:51 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_stack	*find_cheapest(t_stack *stack)
 {
 	if (!stack)
 		return (stack);
-	while (stack)
+	while (stack->next)
 	{
 		if (stack->cheapest)
 			return (stack);
