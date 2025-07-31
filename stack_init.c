@@ -12,30 +12,6 @@
 
 #include "push_swap.h"
 
-void	build_stack(t_stack **a, char **argv, int flag_argc)
-{
-	long		n;
-	int			i;
-
-	i = 1;
-	if (flag_argc)
-		i--;
-	while (argv[i])
-	{
-		if (!is_valid(argv[i]))
-			error_free(a, argv, flag_argc);
-		n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN)
-			error_free(a, argv, flag_argc);
-		if (check_repeated(*a, (int)n))
-			error_free(a, argv, flag_argc);
-		add_node(a, (int)n);
-		i++;
-	}
-	if (flag_argc)
-		free_arg(argv);
-}
-
 static int	is_valid(char *nbr)
 {
 	int	i;
@@ -87,10 +63,40 @@ static void	add_node(t_stack **a, int n)
 		node->prev = last_node;
 	}
 }
-void	free_arg(char **argv)
+
+int	stack_sorted(t_stack *a)
 {
-	int i = 0;
+	if (!a)
+		return (1);
+	while (a->next)
+	{
+		if (a->n > a->next->n)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
+void	build_stack(t_stack **a, char **argv, int flag_argc)
+{
+	long		n;
+	int			i;
+
+	i = 1;
+	if (flag_argc)
+		i--;
 	while (argv[i])
-		free(argv[i++]);
-	free(argv);
+	{
+		if (!is_valid(argv[i]))
+			error_free(a, argv, flag_argc);
+		n = ft_atol(argv[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			error_free(a, argv, flag_argc);
+		if (check_repeated(*a, (int)n))
+			error_free(a, argv, flag_argc);
+		add_node(a, (int)n);
+		i++;
+	}
+	if (flag_argc)
+		free_arg(argv);
 }

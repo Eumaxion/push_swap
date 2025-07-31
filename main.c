@@ -30,16 +30,27 @@ int	main(int argc, char **argv)
 	if (!stack_sorted(stack_a))
 	{
 		if (stack_len(stack_a) == 2)
-			sa(&stack_a);
+			sa(&stack_a, 1);
 		else if (stack_len(stack_a) == 3)
 			sort_three(&stack_a);
 		else
-			push_swap();
+			push_swap(&stack_a, &stack_b);
 	}
 	free_stack(stack_a);
 	return (0);
 }
 
+//----------------------- exclude later -----------------------//
+void	print_nodes(t_stack *a)
+{
+	while (a)
+	{
+		printf("%d || ", a->n);
+		a = a->next;
+	}
+	printf("\n");
+}
+//---------------------^^ exclude later ^^---------------------//
 
 /* 		printf("Before sorting: \n");
 		print_nodes(stack_a); //<<<<<< exclude later

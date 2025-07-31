@@ -6,15 +6,10 @@ void	init_nodes_a(t_stack *a, t_stack *b)
 	set_index(b);
 	target_in_a(a, b);
 	set_price(a, b);
-	find_cheapest(a, b);
+	find_cheapest(a);
 }
 
-void	init_nodes_b(t_stack *a, t_stack *b)
-{
-
-}
-
-void	current_index(t_stack *stack)
+void	set_index(t_stack *stack)
 {
 	int	i;
 	int	middle;
@@ -39,22 +34,22 @@ void	target_in_a(t_stack *a, t_stack *b)
 {
 	t_stack	*copy_b;
 	t_stack	*target_node;
-	long	closer_bigger_n;
+	long	closer_smaller_n;
 
 	while(a)
 	{
-		closer_bigger_n = LONG_MIN;
+		closer_smaller_n = LONG_MIN;
 		copy_b = b;
 		while (copy_b)
 		{
-			if (copy_b->n < a->n && copy_b->n > closer_bigger_n)
+			if (copy_b->n < a->n && copy_b->n > closer_smaller_n)
 			{
-				closer_bigger_n = copy_b->n;
+				closer_smaller_n = copy_b->n;
 				target_node = copy_b;
 			}
 			copy_b = copy_b->next;
 		}
-		if (closer_bigger_n == LONG_MIN)
+		if (closer_smaller_n == LONG_MIN)
 			a->target = ft_find_biggest(a);
 		else
 			a->target = target_node;
@@ -82,19 +77,19 @@ void	set_price(t_stack *a, t_stack *b)
 	}
 }
 
-void	find_cheapest(t_stack *stack)
+void	set_cheapest(t_stack *stack)
 {
-	long	cheapest_n;
-	t_stack	*cheapest_node;
+	long		lower_value;
+	t_stack		*cheapest_node;
 
 	if (!stack)
 		return ;
-	cheapest_n = LONG_MAX;
+	lower_value = LONG_MAX;
 	while(stack)
 	{
-		if (stack->p_cost < cheapest_n)
+		if (stack->p_cost < lower_value)
 		{
-			cheapest_n = stack->p_cost;
+			lower_value = stack->p_cost;
 			cheapest_node = stack;
 		}
 		stack = stack->next;

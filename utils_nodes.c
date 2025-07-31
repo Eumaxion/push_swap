@@ -12,38 +12,6 @@
 
 #include "push_swap.h"
 
-t_stack	*ft_find_last(t_stack *lst)
-{
-	if (!lst)
-		return (lst);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
-//----------------------- exclude later -----------------------//
-void	print_nodes(t_stack *a)
-{
-	while (a->next != NULL)
-	{
-		printf("%d || ", a->n);
-		a = a->next;
-	}
-	printf("%d\n", a->n);
-}
-//---------------------^^ exclude later ^^---------------------//
-int	stack_sorted(t_stack *a)
-{
-	if (!a)
-		return (1);
-	while (a->next)
-	{
-		if (a->n > a->next->n)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
 int	stack_len(t_stack *a)
 {
 	int	i;
@@ -57,17 +25,56 @@ int	stack_len(t_stack *a)
 	return (i);
 }
 
-t_stack *ft_find_biggest(t_stack *stack)
+t_stack	*ft_find_last(t_stack *lst)
 {
-	t_stack *biggest;
+	if (!lst)
+		return (lst);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
 
+t_stack	*ft_find_biggest(t_stack *stack)
+{
+	t_stack	*biggest;
+
+	if (!stack)
+		return (stack);
 	biggest = stack;
-	stack = stack->next;
-	while(stack)
+	while(stack->next)
 	{
-		if (biggest->n < stack->n)
-			biggest = stack;
 		stack = stack->next;
+		if (stack->n > biggest->n)
+			biggest = stack;
 	}
 	return(biggest);
+}
+
+t_stack	*ft_find_smallest(t_stack *stack)
+{
+	t_stack	*smallest;
+
+	if (!stack)
+		return (stack);
+	smallest = stack;
+	while(stack->next)
+	{
+		stack = stack->next;
+		if (smallest->n > stack->n)
+			smallest = stack;
+	}
+	return(smallest);
+}
+
+t_stack	*find_cheapest(t_stack *stack)
+{
+	if (!stack)
+		return (stack);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (stack);
 }

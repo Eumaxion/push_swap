@@ -43,3 +43,11 @@ void	free_stack(t_stack *stack)
 		free(tmp);
 	}
 }
+
+void	free_arg(char **argv)
+{
+	int i = 0;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv);
+}
