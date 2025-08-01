@@ -6,18 +6,18 @@
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:17:13 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/31 16:54:02 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/08/01 18:01:41 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "./Libft/libft.h"
-#include <stdio.h>
-#include <limits.h>
+# include "./Libft/libft.h"
+# include <stdio.h>
+# include <limits.h>
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				n;
 	int				index;
@@ -44,7 +44,7 @@ void		free_arg(char **argv);
 int			stack_len(t_stack *a);
 int			stack_sorted(t_stack *a);
 t_stack		*ft_find_last(t_stack *lst);
-t_stack 	*ft_find_biggest(t_stack *stack);
+t_stack		*ft_find_biggest(t_stack *stack);
 t_stack		*ft_find_smallest(t_stack *stack);
 t_stack		*find_cheapest(t_stack *stack);
 
@@ -52,7 +52,7 @@ t_stack		*find_cheapest(t_stack *stack);
 void		set_index(t_stack *stack);
 void		set_price(t_stack *a, t_stack *b);
 void		set_cheapest(t_stack *stack);
-void		set_for_push(t_stack **stack, t_stack *first_node, char	name);
+void		set_for_push(t_stack **stack, t_stack *first_node, char name);
 void		init_nodes_a(t_stack *a, t_stack *b);
 void		init_nodes_b(t_stack *a, t_stack *b);
 void		a_to_b(t_stack **a, t_stack **b);

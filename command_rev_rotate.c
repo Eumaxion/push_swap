@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_rotate.c                                       :+:      :+:    :+:   */
+/*   command_rev_rotate.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:46:09 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/27 15:10:55 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/08/01 17:52:33 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ static void	rev_rotate(t_stack **head)
 
 	if (!head || !*head || !(*head)->next)
 		return ;
-
 	first = *head;
 	last = ft_find_last(*head);
-	
 	last->prev->next = NULL;
 	last->next = first;
 	last->prev = NULL;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_node_a.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/01 18:06:25 by mlima-si          #+#    #+#             */
+/*   Updated: 2025/08/01 18:06:26 by mlima-si         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	init_nodes_a(t_stack *a, t_stack *b)
@@ -17,7 +29,7 @@ void	set_index(t_stack *stack)
 	if (!stack)
 		return ;
 	middle = stack_len(stack) / 2;
-	i = 0;	
+	i = 0;
 	while (stack)
 	{
 		stack->index = i;
@@ -36,13 +48,13 @@ void	target_in_a(t_stack *a, t_stack *b)
 	t_stack	*target_node;
 	long	closer_smaller_n;
 
-	while(a)
+	while (a)
 	{
 		closer_smaller_n = LONG_MIN;
 		copy_b = b;
 		while (copy_b)
 		{
-			if (copy_b->n < a->n 
+			if (copy_b->n < a->n
 				&& copy_b->n > closer_smaller_n)
 			{
 				closer_smaller_n = copy_b->n;
@@ -51,7 +63,7 @@ void	target_in_a(t_stack *a, t_stack *b)
 			copy_b = copy_b->next;
 		}
 		if (closer_smaller_n == LONG_MIN)
-			a->target = ft_find_biggest(a);
+			a->target = ft_find_biggest(b);
 		else
 			a->target = target_node;
 		a = a->next;
@@ -86,7 +98,7 @@ void	set_cheapest(t_stack *stack)
 	if (!stack)
 		return ;
 	lower_value = LONG_MAX;
-	while(stack)
+	while (stack)
 	{
 		if (stack->p_cost < lower_value)
 		{

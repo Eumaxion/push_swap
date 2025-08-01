@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node_init.c                                        :+:      :+:    :+:   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:17:18 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/27 14:16:43 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/08/01 18:03:18 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	is_valid(char *nbr)
 	if (nbr[i] == '+' || nbr[i] == '-')
 		i++;
 	if (!nbr[i])
-		return(0);
-	while(ft_isdigit(nbr[i]))
+		return (0);
+	while (ft_isdigit(nbr[i]))
 		i++;
 	return (nbr[i] == 0);
 }
@@ -29,7 +29,7 @@ static int	is_valid(char *nbr)
 static int	check_repeated(t_stack	*a, int n)
 {
 	if (!a)
-		return(0);
+		return (0);
 	while (a)
 	{
 		if (a->n == n)
@@ -41,8 +41,8 @@ static int	check_repeated(t_stack	*a, int n)
 
 static void	add_node(t_stack **a, int n)
 {
-	t_stack *node;
-	t_stack *last_node;
+	t_stack	*node;
+	t_stack	*last_node;
 
 	if (a == NULL)
 		return ;
@@ -79,8 +79,8 @@ int	stack_sorted(t_stack *a)
 
 void	build_stack(t_stack **a, char **argv, int flag_argc)
 {
-	long		n;
-	int			i;
+	long	n;
+	int		i;
 
 	i = 1;
 	if (flag_argc)

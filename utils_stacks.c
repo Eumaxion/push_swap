@@ -1,21 +1,36 @@
-#include"push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_stacks.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/01 18:04:56 by mlima-si          #+#    #+#             */
+/*   Updated: 2025/08/01 18:07:00 by mlima-si         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 
 void	a_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest_node;
 
 	cheapest_node = find_cheapest(*a);
-	if (cheapest_node->above_middle && cheapest_node->target->above_middle)
+	if (cheapest_node->above_middle
+		&& cheapest_node->target->above_middle)
 		rotate_both(a, b, cheapest_node);
-	else if (!(cheapest_node->above_middle) && !(cheapest_node->target->above_middle))
+	else if (!(cheapest_node->above_middle)
+		&& !(cheapest_node->target->above_middle))
 		rev_rotate_both(a, b, cheapest_node);
 	set_for_push(a, cheapest_node, 'a');
 	set_for_push(b, cheapest_node->target, 'b');
 	pb(a, b, 1);
 }
-void	set_for_push(t_stack **stack, t_stack *first_node, char	name)
+
+void	set_for_push(t_stack **stack, t_stack *first_node, char name)
 {
-	while(*stack != first_node)
+	while (*stack != first_node)
 	{
 		if (name == 'a')
 		{
@@ -33,6 +48,7 @@ void	set_for_push(t_stack **stack, t_stack *first_node, char	name)
 		}
 	}
 }
+
 void	b_to_a(t_stack **a, t_stack **b)
 {
 	set_for_push(a, (*b)->target, 'a');

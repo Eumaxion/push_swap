@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_stack.c                                     :+:      :+:    :+:   */
+/*   command_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:45:35 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/27 15:19:31 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/08/01 17:54:54 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ static void	rotate(t_stack **stack)
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-
 	first = *stack;
 	last = ft_find_last(*stack);
-	
 	*stack = first->next;
 	(*stack)->prev = NULL;
 	last->next = first;

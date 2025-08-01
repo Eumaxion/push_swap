@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_stack.c                                       :+:      :+:    :+:   */
+/*   command_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:45:22 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/07/27 16:14:49 by mlima-si         ###   ########.fr       */
+/*   Updated: 2025/08/01 17:53:01 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push(t_stack **dest, t_stack **source)
 {
-	t_stack *tmp_node;
+	t_stack	*tmp_node;
 
 	if (!source || !*source)
 		return ;
@@ -28,12 +28,14 @@ void	push(t_stack **dest, t_stack **source)
 	tmp_node->prev = NULL;
 	*dest = tmp_node;
 }
+
 void	pa(t_stack **a, t_stack **b, int print)
 {
 	push(a, b);
 	if (print)
 		write(1, "pa\n", 3);
 }
+
 void	pb(t_stack **a, t_stack **b, int print)
 {
 	push(b, a);
