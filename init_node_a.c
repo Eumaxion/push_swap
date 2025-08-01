@@ -17,14 +17,14 @@ void	set_index(t_stack *stack)
 	if (!stack)
 		return ;
 	middle = stack_len(stack) / 2;
-	i = 0;
+	i = 0;	
 	while (stack)
 	{
 		stack->index = i;
 		if (i <= middle)
-			stack->above_middle = 0;
-		else
 			stack->above_middle = 1;
+		else
+			stack->above_middle = 0;
 		stack = stack->next;
 		i++;
 	}
@@ -42,7 +42,8 @@ void	target_in_a(t_stack *a, t_stack *b)
 		copy_b = b;
 		while (copy_b)
 		{
-			if (copy_b->n < a->n && copy_b->n > closer_smaller_n)
+			if (copy_b->n < a->n 
+				&& copy_b->n > closer_smaller_n)
 			{
 				closer_smaller_n = copy_b->n;
 				target_node = copy_b;
@@ -68,7 +69,7 @@ void	set_price(t_stack *a, t_stack *b)
 	{
 		a->p_cost = a->index;
 		if (!(a->above_middle))
-			a->p_cost = len_stack_a - a->index;
+			a->p_cost = len_stack_a - (a->index);
 		if (a->target->above_middle)
 			a->p_cost += a->target->index;
 		else
