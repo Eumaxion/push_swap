@@ -27,7 +27,7 @@ void	error_free(t_stack	**a, char **argv, int flag_argc)
 	}
 	if (a != NULL)
 		free_stack(*a);
-	write(1, "Error\n", 7);
+	write(2, "Error\n", 6);
 	exit(2);
 }
 
