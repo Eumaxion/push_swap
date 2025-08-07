@@ -12,14 +12,28 @@
 
 #include "push_swap.h"
 
-void	init_nodes_b(t_stack *a, t_stack *b)
+void	set_index(t_stack *stack)
 {
-	set_index(a);
-	set_index(b);
-	target_in_b(a, b);
+	int	i;
+	int	middle;
+
+	if (!stack)
+		return ;
+	middle = stack_len(stack) / 2;
+	i = 0;
+	while (stack)
+	{
+		stack->index = i;
+		if (i <= middle)
+			stack->above_middle = 1;
+		else
+			stack->above_middle = 0;
+		stack = stack->next;
+		i++;
+	}
 }
 
-void	target_in_b(t_stack *a, t_stack *b)
+void	set_target(t_stack *a, t_stack *b)
 {
 	t_stack	*copy_a;
 	t_stack	*target_node;
@@ -45,4 +59,53 @@ void	target_in_b(t_stack *a, t_stack *b)
 			b->target = target_node;
 		b = b->next;
 	}
+}
+
+void	set_price(t_stack *a, t_stack *b)
+{
+	int	len_stack_a;
+	int	len_stack_b;
+
+	len_stack_a = stack_len(a);
+	len_stack_b = stack_len(b);
+	while (b)
+	{
+		b->p_cost = b->index;
+		if (!(b->above_middle))
+			b->p_cost = len_stack_b - (b->index);
+		if (b->target->above_middle)
+			b->p_cost += b->target->index;
+		else
+			b->p_cost += len_stack_a - (b->target->index);
+		b = b->next;
+	}
+}
+
+void	set_cheapest(t_stack *stack)
+{
+	long		lower_value;
+	t_stack		*cheapest_node;
+
+	if (!stack)
+		return ;
+	lower_value = LONG_MAX;
+	while (stack)
+	{
+		if (stack->p_cost < lower_value)
+		{
+			lower_value = stack->p_cost;
+			cheapest_node = stack;
+		}
+		stack = stack->next;
+	}
+	cheapest_node->cheapest = 1;
+}
+
+void	init_nodes_b(t_stack *a, t_stack *b)
+{
+	set_index(a);
+	set_index(b);
+	set_target(a, b);
+	set_price(a, b);
+	set_cheapest(b);
 }

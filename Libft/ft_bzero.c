@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlima-si <mlima-si@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 13:10:20 by mlima-si          #+#    #+#             */
-/*   Updated: 2025/08/01 18:08:35 by mlima-si         ###   ########.fr       */
+/*   Created: 2025/04/10 13:16:15 by mlima-si          #+#    #+#             */
+/*   Updated: 2025/04/16 15:50:36 by mlima-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
+void	ft_bzero(void *s, size_t n)
+{
+	size_t			i;
+	unsigned char	*str;
 
-long		ft_atol(const char *nptr);
-char		**ft_split(char const *s, char c);
-int			ft_isdigit(int c);
-size_t		ft_strlcpy(char *dest, const char *src, size_t size);
-size_t		ft_strlen(const char *str);
-void		*ft_calloc(size_t nmemb, size_t size);
-void		ft_bzero(void *s, size_t n);
-
-#endif
+	i = 0;
+	str = s;
+	while (i < n)
+	{
+		str[i] = 0;
+		i++;
+	}
+}

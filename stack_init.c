@@ -17,13 +17,19 @@ static int	is_valid(char *nbr)
 	int	i;
 
 	i = 0;
+	if (!nbr || !nbr[0])
+		return (0);
 	if (nbr[i] == '+' || nbr[i] == '-')
 		i++;
 	if (!nbr[i])
 		return (0);
-	while (ft_isdigit(nbr[i]))
+	while (nbr[i])
+	{
+		if (!ft_isdigit(nbr[i]))
+			return (0);
 		i++;
-	return (nbr[i] == 0);
+	}
+	return (1);
 }
 
 static int	check_repeated(t_stack	*a, int n)
@@ -46,7 +52,7 @@ static void	add_node(t_stack **a, int n)
 
 	if (a == NULL)
 		return ;
-	node = malloc(sizeof(t_stack));
+	node = ft_calloc(1, sizeof(t_stack));
 	if (node == NULL)
 		return ;
 	node->next = NULL;

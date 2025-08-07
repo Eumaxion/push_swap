@@ -12,36 +12,39 @@
 
 #include "push_swap.h"
 
-void	a_to_b(t_stack **a, t_stack **b)
+void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 {
-	t_stack	*cheapest_node;
+	while (*a != cheapest->target && *b != cheapest)
+		rr(a, b, 1);
+	set_index(*a);
+	set_index(*b);
+}
 
-	cheapest_node = find_cheapest(*a);
-	if (cheapest_node->above_middle
-		&& cheapest_node->target->above_middle)
-		rotate_both(a, b, cheapest_node);
-	else if (!(cheapest_node->above_middle)
-		&& !(cheapest_node->target->above_middle))
-		rev_rotate_both(a, b, cheapest_node);
-	set_for_push(a, cheapest_node, 'a');
-	set_for_push(b, cheapest_node->target, 'b');
-	pb(a, b, 1);
+void	rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
+{
+	while (*a != cheapest->target && *b != cheapest)
+		rrr(a, b, 1);
+	set_index(*a);
+	set_index(*b);
 }
 
 void	set_for_push(t_stack **stack, t_stack *first_node, char name)
 {
+	int	above_middle;
+
+	above_middle = first_node->above_middle;
 	while (*stack != first_node)
 	{
 		if (name == 'a')
 		{
-			if (first_node->above_middle)
+			if (above_middle)
 				ra(stack, 1);
 			else
 				rra(stack, 1);
 		}
 		else if (name == 'b')
 		{
-			if (first_node->above_middle)
+			if (above_middle)
 				rb(stack, 1);
 			else
 				rrb(stack, 1);
@@ -51,6 +54,16 @@ void	set_for_push(t_stack **stack, t_stack *first_node, char name)
 
 void	b_to_a(t_stack **a, t_stack **b)
 {
-	set_for_push(a, (*b)->target, 'a');
+	t_stack	*cheapest_node;
+
+	cheapest_node = find_cheapest(*b);
+	if (cheapest_node->above_middle
+		&& cheapest_node->target->above_middle)
+		rotate_both(a, b, cheapest_node);
+	else if (!(cheapest_node->above_middle)
+		&& !(cheapest_node->target->above_middle))
+		rev_rotate_both(a, b, cheapest_node);
+	set_for_push(b, cheapest_node, 'b');
+	set_for_push(a, cheapest_node->target, 'a');
 	pa(a, b, 1);
 }

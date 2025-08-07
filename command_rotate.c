@@ -49,11 +49,3 @@ void	rr(t_stack **a, t_stack **b, int print)
 	if (print)
 		write(1, "rr\n", 3);
 }
-
-void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
-{
-	while (*b != cheapest->target && *a != cheapest)
-		rr(a, b, 1);
-	set_index(*a);
-	set_index(*b);
-}

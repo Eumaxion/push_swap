@@ -53,12 +53,11 @@ void		set_index(t_stack *stack);
 void		set_price(t_stack *a, t_stack *b);
 void		set_cheapest(t_stack *stack);
 void		set_for_push(t_stack **stack, t_stack *first_node, char name);
-void		init_nodes_a(t_stack *a, t_stack *b);
 void		init_nodes_b(t_stack *a, t_stack *b);
 void		a_to_b(t_stack **a, t_stack **b);
 void		b_to_a(t_stack **a, t_stack **b);
-void		target_in_a(t_stack *a, t_stack *b);
-void		target_in_b(t_stack *a, t_stack *b);
+void		set_target(t_stack *a, t_stack *b);
+void		set_target(t_stack *a, t_stack *b);
 
 //----------------push_swap ----------------
 void		push_swap(t_stack **a, t_stack **b);

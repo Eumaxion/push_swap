@@ -16,11 +16,11 @@ int	stack_len(t_stack *a)
 {
 	int	i;
 
-	i = 1;
-	while (a->next)
+	i = 0;
+	while (a)
 	{
-		a = a->next;
 		i++;
+		a = a->next;
 	}
 	return (i);
 }
@@ -53,15 +53,19 @@ t_stack	*ft_find_biggest(t_stack *stack)
 t_stack	*ft_find_smallest(t_stack *stack)
 {
 	t_stack	*smallest;
+	long	small_n;
 
 	if (!stack)
 		return (stack);
-	smallest = stack;
-	while (stack->next)
+	small_n = LONG_MAX;
+	while (stack)
 	{
-		stack = stack->next;
-		if (smallest->n > stack->n)
+		if (stack->n < small_n)
+		{
+			small_n = stack->n;
 			smallest = stack;
+		}
+		stack = stack->next;
 	}
 	return (smallest);
 }
@@ -70,11 +74,11 @@ t_stack	*find_cheapest(t_stack *stack)
 {
 	if (!stack)
 		return (stack);
-	while (stack->next)
+	while (stack)
 	{
 		if (stack->cheapest)
 			return (stack);
 		stack = stack->next;
 	}
-	return (stack);
+	return (NULL);
 }

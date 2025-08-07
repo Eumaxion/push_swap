@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc < 2 || (argc == 2 && !argv[1][0]))
+	if (argc < 2 || (argc == 2 && (!argv[1] || !argv[1][0])))
 	{
 		write(2, "Error\n", 6);
 		return (1);

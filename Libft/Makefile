@@ -1,6 +1,6 @@
 NAME =	libft.a
 
-SOURCES =	ft_split.c		ft_atol.c	ft_isdigit.c ft_strlcpy.c ft_strlen.c
+SOURCES =	ft_split.c	ft_bzero.c	ft_calloc.c	ft_atol.c	ft_isdigit.c ft_strlcpy.c ft_strlen.c
 
 FLAGS += -Wall -Werror -Wextra
 

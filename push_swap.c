@@ -14,13 +14,15 @@
 
 static void	smallest_top(t_stack **a)
 {
-	while ((*a)->n != ft_find_smallest(*a)->n)
-	{
-		if (ft_find_smallest(*a)->above_middle)
+	t_stack	*smallest;
+
+	smallest = ft_find_smallest(*a);
+	if (smallest->above_middle)
+		while (*a != smallest)
 			ra(a, 1);
-		else
+	else
+		while (*a != smallest)
 			rra(a, 1);
-	}
 }
 
 void	sort_three(t_stack **stack)
@@ -46,10 +48,7 @@ void	push_swap(t_stack **a, t_stack **b)
 	if (len_stack_a-- > 3 && !stack_sorted(*a))
 		pb(a, b, 1);
 	while (len_stack_a-- > 3 && !stack_sorted(*a))
-	{
-		init_nodes_a(*a, *b);
-		a_to_b(a, b);
-	}
+		pb(a, b, 1);
 	sort_three(a);
 	while (*b)
 	{
